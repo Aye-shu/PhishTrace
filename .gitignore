@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Data (don't upload large datasets)
+data/*.csv
+data/*.txt
+
+# Reports (generated output)
+reports/*.pdf
+reports/*.html
+
+# OS files
+.DS_Store
+Thumbs.db
