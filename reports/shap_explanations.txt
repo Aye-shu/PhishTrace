@@ -1,0 +1,218 @@
+Explainer initialized with 30 features
+======================================================================
+EXPLANATION FOR: https://www.google.com
+======================================================================
+Verdict: SAFE
+Confidence: 99.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=1.0)
+    ▼ decreases risk       SHAP: -0.1255
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1211
+ 3. Prefix_Suffix                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1101
+ 4. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0403
+ 5. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0382
+ 6. having_Sub_Domain              (value=0.0)
+    ▲ increases risk       SHAP: +0.0251
+ 7. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0230
+ 8. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0224
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0128
+10. having_IP_Address              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0111
+======================================================================
+
+======================================================================
+EXPLANATION FOR: https://github.com
+======================================================================
+Verdict: SAFE
+Confidence: 98.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=1.0)
+    ▼ decreases risk       SHAP: -0.1155
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1103
+ 3. Prefix_Suffix                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0948
+ 4. having_Sub_Domain              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0353
+ 5. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0310
+ 6. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0273
+ 7. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0224
+ 8. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0197
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0136
+10. Request_URL                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0079
+======================================================================
+
+======================================================================
+EXPLANATION FOR: https://www.linkedin.com
+======================================================================
+Verdict: SAFE
+Confidence: 99.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=1.0)
+    ▼ decreases risk       SHAP: -0.1255
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1211
+ 3. Prefix_Suffix                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1101
+ 4. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0403
+ 5. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0382
+ 6. having_Sub_Domain              (value=0.0)
+    ▲ increases risk       SHAP: +0.0251
+ 7. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0230
+ 8. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0224
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0128
+10. having_IP_Address              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0111
+======================================================================
+
+======================================================================
+EXPLANATION FOR: http://192.168.1.1/login/verify
+======================================================================
+Verdict: SAFE
+Confidence: 81.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=-1.0)
+    ▲ increases risk       SHAP: +0.1967
+ 2. Prefix_Suffix                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1784
+ 3. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1535
+ 4. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0528
+ 5. having_Sub_Domain              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0526
+ 6. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0454
+ 7. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0444
+ 8. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0320
+ 9. Request_URL                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0186
+10. URL_Length                     (value=1.0)
+    ▲ increases risk       SHAP: +0.0156
+======================================================================
+
+======================================================================
+EXPLANATION FOR: http://secure-login-verify.tk/account/update
+======================================================================
+Verdict: SAFE
+Confidence: 66.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=-1.0)
+    ▲ increases risk       SHAP: +0.2668
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1776
+ 3. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0897
+ 4. having_Sub_Domain              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0644
+ 5. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0611
+ 6. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0534
+ 7. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0423
+ 8. Request_URL                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0337
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0316
+10. Prefix_Suffix                  (value=-1.0)
+    ▲ increases risk       SHAP: +0.0176
+======================================================================
+
+======================================================================
+EXPLANATION FOR: http://paypal-verify-account.xyz/login?user=admin
+======================================================================
+Verdict: SAFE
+Confidence: 66.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=-1.0)
+    ▲ increases risk       SHAP: +0.2668
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1776
+ 3. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0897
+ 4. having_Sub_Domain              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0644
+ 5. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0611
+ 6. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0534
+ 7. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0423
+ 8. Request_URL                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0337
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0316
+10. Prefix_Suffix                  (value=-1.0)
+    ▲ increases risk       SHAP: +0.0176
+======================================================================
+
+======================================================================
+EXPLANATION FOR: http://amazon-security-check.ml/signin
+======================================================================
+Verdict: SAFE
+Confidence: 59.00%
+----------------------------------------------------------------------
+
+Top 10 Features Contributing to Prediction:
+----------------------------------------------------------------------
+ 1. SSLfinal_State                 (value=0.0)
+    ▲ increases risk       SHAP: +0.3407
+ 2. URL_of_Anchor                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.1517
+ 3. SFH                            (value=1.0)
+    ▼ decreases risk       SHAP: -0.0795
+ 4. having_Sub_Domain              (value=1.0)
+    ▼ decreases risk       SHAP: -0.0743
+ 5. web_traffic                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0547
+ 6. Domain_registeration_length    (value=1.0)
+    ▲ increases risk       SHAP: +0.0543
+ 7. Links_in_tags                  (value=1.0)
+    ▼ decreases risk       SHAP: -0.0418
+ 8. Request_URL                    (value=1.0)
+    ▼ decreases risk       SHAP: -0.0316
+ 9. Redirect                       (value=1.0)
+    ▲ increases risk       SHAP: +0.0200
+10. Prefix_Suffix                  (value=-1.0)
+    ▲ increases risk       SHAP: +0.0174
+======================================================================
+

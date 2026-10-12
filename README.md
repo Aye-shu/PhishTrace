@@ -23,7 +23,7 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 | Phase | Description | Status |
 |-------|-------------|--------|
 | **Phase 1** | URL Detector (ML + Heuristics) | ✅ **Complete** |
-| Phase 2 | Explainability (SHAP) | ⬜ Planned |
+| **Phase 2** | Explainability (SHAP) | ✅ **Complete** |
 | Phase 3 | Evidence Capture (Screenshots, HTML) | ⬜ Planned |
 | Phase 4 | Report Generation (HTML/PDF) | ⬜ Planned |
 | Phase 5 | Email Analysis (.eml) | ⬜ Planned |
@@ -193,12 +193,25 @@ PhishTrace/
 The system combines ML predictions with heuristic rules for defense-in-depth. When heuristics strongly indicate phishing (score ≥ 40), they override the ML prediction.
 
 ---
-
 ## 📚 Documentation
 
 - [Model Evaluation Report](reports/model_evaluation.md)
+- [Explainability](docs/explainability.md)
 - [Architecture](docs/architecture.md)
 - [Limitations](docs/limitations.md)
+
+## 🔍 Explainability
+
+PhishTrace explains every prediction using SHAP values:
+Top Contributing Features (SHAP):
+▲ SSLfinal_State SHAP: +0.2668
+▼ URL_of_Anchor SHAP: -0.1776
+▼ SFH SHAP: -0.0897
+▲ Domain_registeration_length SHAP: +0.0611
+▼ having_Sub_Domain SHAP: -0.0644
+
+
+See [explainability documentation](docs/explainability.md) for details.
 
 ---
 

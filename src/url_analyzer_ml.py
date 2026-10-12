@@ -3,15 +3,26 @@ URL Analyzer with ML integration.
 Combines feature extraction with the trained Random Forest model.
 """
 
-from feature_extractor import extract_features, FEATURE_ORDER
 import joblib
 import re
 import os
 import pandas as pd
 from urllib.parse import urlparse
 
+from feature_extractor import extract_features, FEATURE_ORDER
+
+# Get the project root directory (one level up from src/)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Try to import SHAP explainability
+try:
+    from explainability import explain_url as get_shap_explanation
+    SHAP_AVAILABLE = True
+except ImportError:
+    SHAP_AVAILABLE = False
+
 # Load trained model
-MODEL_PATH = 'models/phishing_model.pkl'
+MODEL_PATH = os.path.join(PROJECT_ROOT, 'models', 'phishing_model.pkl')
 
 try:
     model = joblib.load(MODEL_PATH)
@@ -32,7 +43,8 @@ def predict_url(url):
         'reasons': [],
         'verdict': 'UNKNOWN',
         'ml_prediction': None,
-        'ml_confidence': None
+        'ml_confidence': None,
+        'shap_explanation': None
     }
 
     if not MODEL_LOADED:
@@ -107,6 +119,19 @@ def predict_url(url):
         result['reasons'].extend(heuristic_reasons)
         result['score'] = max(result['score'], heuristic_score)
 
+    # Add SHAP explanation if available
+    if SHAP_AVAILABLE:
+        try:
+            explanation = get_shap_explanation(url)
+            result['shap_explanation'] = {
+                'top_contributions': explanation['top_contributions'][:5],
+                'confidence': explanation['confidence']
+            }
+        except Exception:
+            result['shap_explanation'] = None
+    else:
+        result['shap_explanation'] = None
+
     return result
 
 
@@ -118,11 +143,22 @@ def print_report(result):
     print(f"URL: {result['url']}")
     print(f"Verdict: {result['verdict']}")
     print(f"Risk Score: {result['score']}/100")
-    print(f"ML Confidence: {result['ml_confidence']:.2%}" if result['ml_confidence'] else "")
+    if result['ml_confidence'] is not None:
+        print(f"ML Confidence: {result['ml_confidence']:.2%}")
     print("-" * 60)
     print("Reasons:")
     for reason in result['reasons']:
         print(f"  - {reason}")
+
+    # Show SHAP explanation
+    if result.get('shap_explanation'):
+        print("-" * 60)
+        print("Top Contributing Features (SHAP):")
+        for exp in result['shap_explanation']['top_contributions']:
+            arrow = "▲" if exp['shap_value'] > 0 else "▼"
+            sign = "+" if exp['shap_value'] > 0 else ""
+            print(f"  {arrow} {exp['feature']:<28} SHAP: {sign}{exp['shap_value']:.4f}")
+
     print("=" * 60)
 
 

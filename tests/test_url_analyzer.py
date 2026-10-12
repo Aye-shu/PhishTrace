@@ -54,6 +54,18 @@ def test_ml_confidence_present():
     result = predict_url("https://www.google.com")
     assert result['ml_confidence'] is not None, "ML confidence should be present"
 
+def test_shap_explanation_present():
+    """Test that SHAP explanation is included."""
+    result = predict_url("http://secure-login-verify.tk/account/update")
+    assert 'shap_explanation' in result, "SHAP explanation should be present"
+
+
+def test_shap_has_contributions():
+    """Test that SHAP explanation has top contributions."""
+    result = predict_url("https://www.google.com")
+    if result.get('shap_explanation'):
+        assert len(result['shap_explanation']['top_contributions']) > 0, \
+            "Should have at least one SHAP contribution"
 
 if __name__ == "__main__":
     test_functions = [

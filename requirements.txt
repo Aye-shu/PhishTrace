@@ -8,3 +8,4 @@ lxml
 python-whois
 dnspython
 tldextract
+shap
