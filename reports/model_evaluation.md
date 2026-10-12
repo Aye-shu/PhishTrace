@@ -69,11 +69,18 @@ The 30 features are grouped into four categories:
 
 ### 4.2 Confusion Matrix (Random Forest)
 
+```
+                 Predicted
+                 Safe    Phishing
+Actual Safe      1211    20
+       Phishing  35      945
+```
+
 | Metric | Value | Interpretation |
 |--------|-------|----------------|
 | True Positives | 945 | Correctly identified phishing URLs |
 | True Negatives | 1211 | Correctly identified safe URLs |
-| False Positives | 20 | Safe URLs wrongly flagged as phishing (1.6%) |
+| False Positives | 20 | Safe URLs wrongly flagged (1.6%) |
 | False Negatives | 35 | Phishing URLs missed (3.6%) |
 
 ### 4.3 Why Random Forest Performed Better
@@ -153,3 +160,32 @@ python src/train_model.py
 
 # Run URL analyzer
 python src/url_analyzer_ml.py
+```
+
+All random seeds are fixed at 42 for reproducibility.
+
+---
+
+## 8. Next Steps (Phases 2-6)
+
+| Phase | Focus | Status |
+|-------|-------|--------|
+| Phase 1 | URL Detector | ✅ Complete |
+| Phase 2 | Explainability (SHAP) | ⬜ Not started |
+| Phase 3 | Evidence Capture | ⬜ Not started |
+| Phase 4 | Report Generation | ⬜ Not started |
+| Phase 5 | Email Analysis | ⬜ Not started |
+| Phase 6 | Polish & Demo | ⬜ Not started |
+
+---
+
+## 9. References
+
+1. UCI Machine Learning Repository. (2015). Phishing Websites Dataset.  
+   https://archive.ics.uci.edu/dataset/327/phishing+websites
+
+2. Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.
+
+---
+
+*Report generated for PhishTrace project - Phase 1 completion.*
