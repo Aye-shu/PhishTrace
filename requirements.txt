@@ -9,3 +9,4 @@ python-whois
 dnspython
 tldextract
 shap
+playwright
