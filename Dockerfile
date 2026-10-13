@@ -1,5 +1,5 @@
-# Use the official Playwright image from Microsoft (includes browsers & dependencies)
-FROM mcr.microsoft.com/playwright:v1.52.0-noble
+# Use the official Python Playwright image from Microsoft
+FROM mcr.microsoft.com/playwright/python:v1.52.0-noble
 
 # Set the working directory
 WORKDIR /app
@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy all your project files into the container
 COPY . .
 
-# Install the Python Playwright package
-RUN pip install playwright
+# Install Python dependencies (including Playwright)
+RUN pip install -r requirements.txt
 
 # The command that runs when the container starts
 CMD ["python3", "src/evidence/evidence_collector.py"]
