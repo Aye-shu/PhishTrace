@@ -24,7 +24,7 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 | **Phase 2** | Explainability (SHAP) | ✅ **Complete** |
 | **Phase 3** | Evidence Capture (Screenshots, HTML) | ✅ **Complete** |
 | **Phase 4** | Report Generation (HTML) | ✅ **Complete** |
-| Phase 5 | Email Analysis (.eml) | ⬜ Planned |
+| **Phase 5** | Email Analysis (.eml) | ✅ **Complete** |
 | Phase 6 | Polish & Demo | ⬜ Planned |
 
 ---
@@ -162,6 +162,12 @@ Reasons:
 
 ---
 
+## 📧 Email Analysis
+
+PhishTrace analyzes `.eml` files for phishing indicators:
+
+```bash
+python src/main_pipeline.py examples/phishing_sample.eml
 ## 📁 Project Structure
 
 ```

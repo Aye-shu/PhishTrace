@@ -289,17 +289,17 @@ REPORT_TEMPLATE = """
                     <li>The ML model has known limitations with placeholder features.</li>
                 </ul>
             </div>
-        </div>
 
-        <h2>📋 Recommendations</h2>
-<div style="background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; border-radius: 0 4px 4px 0;">
-    <ul style="margin: 0; padding-left: 20px;">
-        <li><strong>Do NOT visit this URL</strong> from any device containing sensitive data.</li>
-        <li>If you have already interacted with this URL, <strong>change your passwords immediately</strong>.</li>
-        <li>Report this URL to <a href="https://phishtank.org">PhishTank</a> or your local CERT.</li>
-        <li>For further investigation, consider running this in an isolated sandbox environment.</li>
-    </ul>
-</div>
+            <h2>📋 Recommendations</h2>
+            <div style="background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; border-radius: 0 4px 4px 0;">
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li><strong>Do NOT visit this URL</strong> from any device containing sensitive data.</li>
+                    <li>If you have already interacted with this URL, <strong>change your passwords immediately</strong>.</li>
+                    <li>Report this URL to <a href="https://phishtank.org">PhishTank</a> or your local CERT.</li>
+                    <li>For further investigation, consider running this in an isolated sandbox environment.</li>
+                </ul>
+            </div>
+        </div>
 
         <div class="footer">
             <p><strong>PhishTrace</strong> — Forensic-First Phishing Investigation Platform</p>
@@ -323,6 +323,10 @@ def generate_report(analysis_result, evidence=None, output_path=None):
     Returns:
         str: Path to generated report
     """
+    # Handle email results differently
+    if analysis_result.get('input_type') == 'Email':
+        return generate_email_report(analysis_result, output_path)
+
     verdict = analysis_result.get('verdict', 'UNKNOWN')
     verdict_class = verdict.lower()
 
@@ -395,6 +399,119 @@ def generate_report(analysis_result, evidence=None, output_path=None):
         f.write(html_content)
 
     print(f"✅ Report saved: {output_path}")
+    return output_path
+
+
+def generate_email_report(analysis_result, output_path=None):
+    """Generate a report for an email investigation."""
+    # Build email-specific report HTML
+    url_rows = ""
+    for url_result in analysis_result.get('url_analyses', []):
+        color = {
+            'PHISHING': '#e74c3c',
+            'SUSPICIOUS': '#f39c12',
+            'SAFE': '#27ae60'
+        }.get(url_result['verdict'], '#666')
+
+        url_rows += f"""
+        <tr>
+            <td><span style="color: {color}; font-weight: 600;">{url_result['verdict']}</span></td>
+            <td style="word-break: break-all;">{url_result['url']}</td>
+            <td>{url_result['score']}/100</td>
+        </tr>
+        """
+
+    reasons_html = "".join([
+        f'<div class="reason">{r}</div>'
+        for r in analysis_result.get('reasons', [])
+    ])
+
+    html = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PhishTrace Email Report</title>
+    <style>
+        body {{ font-family: sans-serif; background: #f0f2f5; padding: 40px 20px; }}
+        .container {{ max-width: 1000px; margin: 0 auto; background: white;
+                     border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }}
+        .header {{ background: linear-gradient(135deg, #1a1a2e, #16213e);
+                  color: white; padding: 30px 40px; border-radius: 12px 12px 0 0; }}
+        .content {{ padding: 40px; }}
+        h2 {{ color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }}
+        .verdict {{ padding: 25px; border-radius: 8px; text-align: center;
+                   margin: 20px 0; font-weight: 600; font-size: 24px; }}
+        .verdict-PHISHING {{ background: #fee; border: 2px solid #e74c3c; color: #c0392b; }}
+        .verdict-SUSPICIOUS {{ background: #fff8e1; border: 2px solid #f39c12; color: #d68910; }}
+        .verdict-SAFE {{ background: #e8f8f5; border: 2px solid #27ae60; color: #1e8449; }}
+        table {{ width: 100%; border-collapse: collapse; margin: 20px 0; }}
+        th, td {{ padding: 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }}
+        th {{ background: #1a1a2e; color: white; }}
+        .reason {{ padding: 12px 16px; margin: 8px 0; background: #fff5f5;
+                  border-left: 4px solid #e74c3c; }}
+        .limitations {{ background: #fff9e6; border-left: 4px solid #f39c12;
+                       padding: 15px 20px; margin: 15px 0; }}
+        .footer {{ padding: 20px 40px; background: #f8f9fa; text-align: center;
+                  color: #666; font-size: 12px; border-radius: 0 0 12px 12px; }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 PhishTrace Email Investigation Report</h1>
+            <div style="opacity: 0.8; margin-top: 8px;">Forensic-First Phishing Analysis</div>
+        </div>
+        <div class="content">
+            <h2>📋 Email Details</h2>
+            <table>
+                <tr><th style="width: 200px;">From</th><td>{analysis_result.get('from', 'Unknown')}</td></tr>
+                <tr><th>Reply-To</th><td>{analysis_result.get('reply_to', 'N/A')}</td></tr>
+                <tr><th>Subject</th><td>{analysis_result.get('subject', 'No subject')}</td></tr>
+                <tr><th>URLs Found</th><td>{len(analysis_result.get('urls_found', []))}</td></tr>
+            </table>
+
+            <h2>⚖️ Verdict</h2>
+            <div class="verdict verdict-{analysis_result['verdict']}">
+                {analysis_result['verdict']} — Risk Score: {analysis_result['score']}/100
+            </div>
+
+            <h2>🔎 Indicators Found</h2>
+            {reasons_html if reasons_html else '<p>No suspicious indicators detected.</p>'}
+
+            <h2>🔗 URL Analysis</h2>
+            <table>
+                <tr><th>Verdict</th><th>URL</th><th>Score</th></tr>
+                {url_rows if url_rows else '<tr><td colspan="3">No URLs found in email body.</td></tr>'}
+            </table>
+
+            <h2>⚠️ Limitations</h2>
+            <div class="limitations">
+                <ul>
+                    <li>Email authentication results depend on the email headers provided.</li>
+                    <li>Missing authentication data does not prove fraud — it is unknown.</li>
+                    <li>This report should be reviewed by a qualified analyst.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer">
+            <p><strong>PhishTrace</strong> — Email Investigation Report</p>
+        </div>
+    </div>
+</body>
+</html>
+"""
+
+    if output_path is None:
+        os.makedirs('reports', exist_ok=True)
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        output_path = f'reports/email_investigation_{timestamp}.html'
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    print(f"✅ Email report saved: {output_path}")
     return output_path
 
 
