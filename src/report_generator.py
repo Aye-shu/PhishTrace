@@ -291,6 +291,16 @@ REPORT_TEMPLATE = """
             </div>
         </div>
 
+        <h2>📋 Recommendations</h2>
+<div style="background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; border-radius: 0 4px 4px 0;">
+    <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Do NOT visit this URL</strong> from any device containing sensitive data.</li>
+        <li>If you have already interacted with this URL, <strong>change your passwords immediately</strong>.</li>
+        <li>Report this URL to <a href="https://phishtank.org">PhishTank</a> or your local CERT.</li>
+        <li>For further investigation, consider running this in an isolated sandbox environment.</li>
+    </ul>
+</div>
+
         <div class="footer">
             <p><strong>PhishTrace</strong> — Forensic-First Phishing Investigation Platform</p>
             <p>Generated automatically. For educational and defensive purposes only.</p>
