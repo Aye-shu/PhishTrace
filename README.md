@@ -18,14 +18,12 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 
 ---
 
-## 🎯 Project Status
-
 | Phase | Description | Status |
 |-------|-------------|--------|
 | **Phase 1** | URL Detector (ML + Heuristics) | ✅ **Complete** |
 | **Phase 2** | Explainability (SHAP) | ✅ **Complete** |
-| Phase 3 | Evidence Capture (Screenshots, HTML) | ⬜ Planned |
-| Phase 4 | Report Generation (HTML/PDF) | ⬜ Planned |
+| **Phase 3** | Evidence Capture (Screenshots, HTML) | ✅ **Complete** |
+| **Phase 4** | Report Generation (HTML) | ✅ **Complete** |
 | Phase 5 | Email Analysis (.eml) | ⬜ Planned |
 | Phase 6 | Polish & Demo | ⬜ Planned |
 
@@ -90,6 +88,27 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 ```
 
 ---
+
+## 📄 Sample Investigation Report
+
+PhishTrace generates professional HTML investigation reports. Here's what a report includes:
+
+| Section | Content |
+|---------|---------|
+| **Header** | Report ID, timestamp, analyst |
+| **Target** | Investigated URL, page title, final URL |
+| **Verdict** | Color-coded verdict with risk score |
+| **Indicators** | List of all suspicious signals found |
+| **ML Analysis** | Model prediction and confidence |
+| **SHAP Explainability** | Feature contribution bars |
+| **Evidence** | Screenshots + SHA-256 hashes |
+| **Limitations** | Honest disclosure of tool limitations |
+
+**Generate your own report:**
+```bash
+python src/main_pipeline.py "https://example.com"
+
+----
 
 ## 🚀 Quick Start
 

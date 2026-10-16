@@ -15,3 +15,16 @@ reports/*.html
 # OS files
 .DS_Store
 Thumbs.db
+
+# Evidence files (contain real captures, keep local)
+evidence/*.png
+evidence/*.html
+evidence/*.json
+
+# Reports (generated output)
+reports/*.html
+reports/investigation_*.html
+
+# Keep the folder structure
+!evidence/.gitkeep
+!reports/.gitkeep

@@ -1,0 +1,21 @@
+{
+  "url": "https://www.google.com",
+  "timestamp": "2026-10-15T13:11:47.308206",
+  "artifacts": [
+    {
+      "type": "screenshot",
+      "path": "screenshot_20261015_131134.png",
+      "sha256": "dee37748fc6eabb7e3d4865f1b719e9a513b4f20399dd3f0f014eed26bbc38fc",
+      "size_bytes": 29036
+    },
+    {
+      "type": "html",
+      "path": "html_20261015_131134.html",
+      "sha256": "2d382a8c0eb72b462a7d0bb72f052ec3624936ceeee4620f5a91fd8666ba0592",
+      "size_bytes": 257986
+    }
+  ],
+  "status": "success",
+  "page_title": "Google",
+  "final_url": "https://www.google.com/"
+}
