@@ -28,3 +28,5 @@ reports/investigation_*.html
 # Keep the folder structure
 !evidence/.gitkeep
 !reports/.gitkeep
+
+.env

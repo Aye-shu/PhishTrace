@@ -10,6 +10,7 @@ import pandas as pd
 from urllib.parse import urlparse
 
 from feature_extractor import extract_features, FEATURE_ORDER
+from threat_intel import check_virustotal
 
 # Get the project root directory (one level up from src/)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,7 +45,8 @@ def predict_url(url):
         'verdict': 'UNKNOWN',
         'ml_prediction': None,
         'ml_confidence': None,
-        'shap_explanation': None
+        'shap_explanation': None,
+        'threat_intel': None
     }
 
     if not MODEL_LOADED:
@@ -131,6 +133,27 @@ def predict_url(url):
             result['shap_explanation'] = None
     else:
         result['shap_explanation'] = None
+
+    # Add Threat Intelligence Check
+    print("    [Debug] Checking VirusTotal...")
+    vt_result = check_virustotal(url)
+    
+    if vt_result['status'] == 'success':
+        print(f"    [Debug] VT Success: Malicious={vt_result['malicious_count']}, Suspicious={vt_result['suspicious_count']}")
+        result['threat_intel'] = vt_result
+        
+        # Adjust score based on VirusTotal
+        if vt_result['malicious_count'] > 0:
+            result['score'] = min(100, result['score'] + 40)
+            result['verdict'] = 'PHISHING'
+            result['reasons'].extend(vt_result['reasons'])
+        elif vt_result['suspicious_count'] > 0:
+            result['score'] = min(100, result['score'] + 20)
+            result['verdict'] = 'SUSPICIOUS'
+            result['reasons'].extend(vt_result['reasons'])
+    else:
+        print(f"    [Debug] VT Failed/Not Found: {vt_result.get('message')}")
+        result['threat_intel'] = vt_result # Save it so the report shows the "Not Found" message
 
     return result
 

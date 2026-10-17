@@ -256,6 +256,19 @@ REPORT_TEMPLATE = """
             {% endfor %}
             {% endif %}
 
+            {% if threat_intel %}
+            <h2>🌐 Threat Intelligence (VirusTotal)</h2>
+            {% if threat_intel.status == 'success' %}
+                <table>
+                    <tr><th style="width: 200px;">Total Engines Checked</th><td>{{ threat_intel.total_engines }}</td></tr>
+                    <tr><th>Malicious Detections</th><td style="color: #e74c3c; font-weight: bold;">{{ threat_intel.malicious_count }}</td></tr>
+                    <tr><th>Suspicious Detections</th><td style="color: #f39c12; font-weight: bold;">{{ threat_intel.suspicious_count }}</td></tr>
+                </table>
+            {% else %}
+                <p>Status: {{ threat_intel.message }}</p>
+            {% endif %}
+            {% endif %}
+
             {% if artifacts %}
             <h2>📁 Evidence Artifacts</h2>
             <table>
@@ -380,7 +393,8 @@ def generate_report(analysis_result, evidence=None, output_path=None):
         'shap_contributions': shap_contributions,
         'max_shap': max_shap,
         'artifacts': evidence.get('artifacts', []) if evidence else [],
-        'screenshot_base64': screenshot_base64
+        'screenshot_base64': screenshot_base64,
+        'threat_intel': analysis_result.get('threat_intel')
     }
 
     # Render template
