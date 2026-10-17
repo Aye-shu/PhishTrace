@@ -18,6 +18,10 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 
 ---
 
+
+Update the Project Status table:
+
+```markdown
 | Phase | Description | Status |
 |-------|-------------|--------|
 | **Phase 1** | URL Detector (ML + Heuristics) | ✅ **Complete** |
@@ -25,7 +29,7 @@ PhishTrace is a phishing detection and investigation tool that combines **machin
 | **Phase 3** | Evidence Capture (Screenshots, HTML) | ✅ **Complete** |
 | **Phase 4** | Report Generation (HTML) | ✅ **Complete** |
 | **Phase 5** | Email Analysis (.eml) | ✅ **Complete** |
-| Phase 6 | Polish & Demo | ⬜ Planned |
+| **Phase 6** | Web Interface & Polish | ✅ **Complete** |
 
 ---
 
@@ -248,6 +252,28 @@ See [explainability documentation](docs/explainability.md) for details.
 - [ ] Phase 4: Report Generation
 - [ ] Phase 5: Email Analysis
 - [ ] Phase 6: Polish & Demo
+
+---
+
+## 🖥️ Live Demo
+
+Run the web interface locally:
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+
+----
+Features
+🔗 URL Investigation — Enter any URL to get instant analysis
+
+📧 Email Investigation — Upload .eml files for analysis
+
+📊 Visual Results — Color-coded verdicts with risk scores
+
+🧠 SHAP Explanations — See which features drove the decision
+
+📄 Report Downloads — Export professional HTML reports
 
 ---
 
