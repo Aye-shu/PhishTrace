@@ -10,3 +10,4 @@ dnspython
 tldextract
 shap
 playwrightstreamlit
+pip install flask flask-cors

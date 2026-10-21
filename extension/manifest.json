@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "PhishTrace",
+  "version": "1.0",
+  "description": "Real-time phishing protection powered by ML and Threat Intel.",
+  "permissions": ["tabs", "activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
