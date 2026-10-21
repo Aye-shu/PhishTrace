@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { width: 300px; font-family: Arial, sans-serif; padding: 10px; }
-        h2 { margin: 0 0 10px 0; font-size: 18px; color: #1a1a2e; }
-        .verdict { padding: 10px; text-align: center; font-weight: bold; border-radius: 5px; color: white; margin-bottom: 10px;}
-        .PHISHING { background: #e74c3c; }
-        .SUSPICIOUS { background: #f39c12; }
-        .SAFE { background: #27ae60; }
-        ul { padding-left: 20px; font-size: 12px; color: #555; }
-    </style>
-</head>
-<body>
-    <h2>🔍 PhishTrace</h2>
-    <div id="verdict-box" class="verdict" style="background: #ccc;">Loading...</div>
-    <div id="score" style="font-size: 14px; margin-bottom: 10px;">Risk Score: -</div>
-    <ul id="reasons"></ul>
+document.addEventListener('DOMContentLoaded', () => {
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+        const tabId = tabs[0].id;
+        
+        chrome.storage.local.get([tabId.toString()], (result) => {
+            const data = result[tabId];
+            
+            const box = document.getElementById('verdict-box');
+            const score = document.getElementById('score');
+            const reasonsList = document.getElementById('reasons');
 
-    <script src="popup.js"></script>
-</body>
-</html>
+            if (data) {
+                box.innerText = data.verdict;
+                box.className = `verdict ${data.verdict}`;
+                score.innerText = `Risk Score: ${data.score}/100`;
+                
+                reasonsList.innerHTML = ""; // Clear old reasons
+                data.reasons.forEach(reason => {
+                    const li = document.createElement('li');
+                    li.innerText = reason;
+                    reasonsList.appendChild(li);
+                });
+            } else {
+                box.innerText = "No data yet. Refresh the page.";
+                box.className = "verdict";
+            }
+        });
+    });
+});
