@@ -12,8 +12,8 @@
 
 PhishTrace is a phishing detection and investigation tool that combines **machine learning** with **heuristic analysis** to identify malicious URLs. Unlike simple URL checkers, PhishTrace is designed for **forensic readiness** — it explains its decisions, preserves evidence, and generates investigation reports.
 
-**Author:** [YOUR NAME]  
-**Institution:** [YOUR UNIVERSITY]  
+**Author:** Ayesha Akther Ishika
+**Institution:** Southeast University 
 **Purpose:** Undergraduate research project for fully-funded master's applications in Cybersecurity, Information Security, and Digital Forensics.
 
 ---
